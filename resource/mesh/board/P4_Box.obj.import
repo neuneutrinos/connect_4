@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cjn1bgr6s7rhr"
+path="res://.godot/imported/P4_Box.obj-84e666a1581af903478a05b9f114a968.mesh"
+
+[deps]
+
+files=["res://.godot/imported/P4_Box.obj-84e666a1581af903478a05b9f114a968.mesh"]
+
+source_file="res://resource/mesh/board/P4_Box.obj"
+dest_files=["res://.godot/imported/P4_Box.obj-84e666a1581af903478a05b9f114a968.mesh", "res://.godot/imported/P4_Box.obj-84e666a1581af903478a05b9f114a968.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
