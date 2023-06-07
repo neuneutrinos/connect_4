@@ -30,6 +30,12 @@ enum TOKEN_VALUE {EMPTY,PLAYER1,PLAYER2}
 @export var token_material:ShaderMaterial = preload("res://resource/material/token_shader_material.tres")
 
 var board_value:Array=[]
+var token_material_list:Array[ShaderMaterial]
+
+func _ready():
+	init_token_materials()
+	rebuild()
+
 
 func init_board_value():
 	board_value.clear()
@@ -39,7 +45,18 @@ func init_board_value():
 		line.fill(TOKEN_VALUE.EMPTY)
 		board_value.append(line)
 
-		
+func init_token_materials():
+	const SHADER_PARAM_NAME="playerColorIndex"
+	var m1:ShaderMaterial = token_material
+	var m2:ShaderMaterial = m1.duplicate()
+	var player_color_index_m1:float =m1.get_shader_parameter(SHADER_PARAM_NAME)
+	#1=>2 , 2=>1
+	var player_color_index_m2:float =(int)(player_color_index_m1)^3
+	m2.set_shader_parameter(SHADER_PARAM_NAME,player_color_index_m2)
+	print("materials value",[m1.get_shader_parameter(SHADER_PARAM_NAME),m2.get_shader_parameter(SHADER_PARAM_NAME)])
+	self.token_material_list=[m1,m2]
+	
+	
 func rebuild()->void:
 	print("rebuilding ",[nb_column,nb_line])
 	init_board_value()
@@ -55,16 +72,18 @@ func rebuild()->void:
 
 #if nb_column is returned => coluln is full or invalid
 func get_height_index(col_index:int)->int:
-	if(col_index>=nb_column):return nb_column
+	if(col_index>=nb_column):return nb_line
 	var col = board_value[col_index]
 	var l_index=0
 	while l_index<nb_line && col[l_index] != TOKEN_VALUE.EMPTY :l_index+=1
 	return l_index
 
-func spawn_token(col_index:int)->bool:
+func spawn_token(col_index:int,player_index:int)->bool:
 	var h_index = get_height_index(col_index)
-	if h_index == nb_column:return false
-	#TODO spawn token
+	if h_index == nb_line:return false
+	var token = Token.new(token_mesh,token_material_list[player_index],col_index,nb_line,h_index)
+	add_child(token)
+	board_value[col_index][h_index]=TOKEN_VALUE.PLAYER1+player_index
 	return true
 	pass
 
@@ -72,3 +91,13 @@ func spawn_token(col_index:int)->bool:
 func on_export_change():
 	rebuild()
 	pass
+
+##DBG##################################
+
+
+func _on_test_spawn_pressed():
+	var col=randi()%nb_column
+	var player=1+randi()%2
+	print("[DBG]test spawn",{"column":col,"player":player})
+	spawn_token(col,player-1)
+pass # Replace with function body.
