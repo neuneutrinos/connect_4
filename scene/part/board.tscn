@@ -1,7 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://blgy5ua8insjy"]
 
-[ext_resource type="Script" path="res://script/board.gd" id="1_rvhbm"]
+[ext_resource type="Script" path="res://script/Board.gd" id="1_4hh4s"]
 
 [node name="board" type="Node3D"]
-script = ExtResource("1_rvhbm")
-size_X = 6
+script = ExtResource("1_4hh4s")
+nb_column = 7
+nb_line = 6

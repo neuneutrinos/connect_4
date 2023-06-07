@@ -5,5 +5,6 @@
 [node name="game" type="Node3D"]
 
 [node name="board" parent="." instance=ExtResource("1_w0fbe")]
-size_X = 7
-size_Y = 6
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.0156197, 0.53329, -0.845788, 0.00984694, 0.845933, 0.533199, 0.99983, 0, -0.0184645, 0, 0, 0)

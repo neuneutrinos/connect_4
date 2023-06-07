@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dlp24uiskuhae"]
+
+[ext_resource type="Shader" path="res://resource/shader/token_shader.gdshader" id="1_6dvov"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_6dvov")
+shader_parameter/playerColorIndex = 1.0
