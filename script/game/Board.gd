@@ -5,12 +5,12 @@ class_name Board
 enum TOKEN_VALUE {EMPTY,PLAYER1,PLAYER2}
 
 @export_group("Board data")
-@export_range(4,50) var nb_column : int:
+@export_range(4,50) var nb_column : int=7:
 	set(value):
 		nb_column=value
 		on_export_change()
 		
-@export_range(4,50) var nb_line : int:
+@export_range(4,50) var nb_line : int=6:
 	set(value):
 		nb_line=value
 		on_export_change()
@@ -58,6 +58,8 @@ func init_token_materials():
 	
 	
 func rebuild()->void:
+	print("rebuild ",[nb_column,nb_line])
+	remove_all_token()
 	init_board_value()
 	for c in get_children():remove_child(c)#clear all children
 	for i in range(nb_column):
@@ -68,7 +70,10 @@ func rebuild()->void:
 			child.translate(Vector3(0,j,i))
 			add_child(child)
 	
-
+func remove_all_token():
+	for c in get_children():
+		remove_child(c)#clear all children (case + token)
+	
 #if nb_column is returned => coluln is full or invalid
 func get_height_index(col_index:int)->int:
 	if(col_index>=nb_column):return nb_line

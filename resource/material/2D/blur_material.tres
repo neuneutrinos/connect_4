@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ckdqpq7vhtx0u"]
+
+[ext_resource type="Shader" path="res://resource/shader/canvas_item/blur2D.gdshader" id="1_ajcb3"]
+
+[resource]
+shader = ExtResource("1_ajcb3")
+shader_parameter/blur_amount = 0.539

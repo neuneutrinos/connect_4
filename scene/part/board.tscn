@@ -4,5 +4,3 @@
 
 [node name="board" type="Node3D"]
 script = ExtResource("1_k5skm")
-nb_column = 7
-nb_line = 6

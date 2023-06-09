@@ -26,7 +26,5 @@ text = "[DBG] test spawn"
 
 [node name="Board" type="Node3D" parent="."]
 script = ExtResource("1_h0ind")
-nb_column = 7
-nb_line = 6
 
 [connection signal="pressed" from="DBG/test_spawn" to="Board" method="_on_test_spawn_pressed"]

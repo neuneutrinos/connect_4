@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://dj0bhibujl1cc"]
+
+[ext_resource type="Script" path="res://script/menu/MainMenu.gd" id="1_cwlat"]
+[ext_resource type="Script" path="res://script/game/Board.gd" id="1_n13jp"]
+
+[sub_resource type="Environment" id="Environment_nwewd"]
+adjustment_enabled = true
+adjustment_saturation = 0.5
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_qm87y"]
+dof_blur_far_transition = 611.89
+dof_blur_near_enabled = true
+dof_blur_near_distance = 8192.0
+dof_blur_near_transition = 1063.06
+dof_blur_amount = 0.14
+
+[node name="main_menu" type="Node3D"]
+script = ExtResource("1_cwlat")
+frac_time_max = 3.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.749, 2.953, 3)
+
+[node name="Board" type="Node3D" parent="."]
+script = ExtResource("1_n13jp")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nwewd")
+camera_attributes = SubResource("CameraAttributesPractical_qm87y")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer"]
+layout_mode = 2
+
+[node name="Button_play" type="Button" parent="Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "=>Play<="
+
+[node name="Button_setup" type="Button" parent="Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Setup
+"
+
+[node name="Button_quit" type="Button" parent="Control/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit the game :( "
