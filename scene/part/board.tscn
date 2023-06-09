@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://blgy5ua8insjy"]
+[gd_scene load_steps=2 format=3 uid="uid://bqk405cf2d2qj"]
 
-[ext_resource type="Script" path="res://script/Board.gd" id="1_4hh4s"]
+[ext_resource type="Script" path="res://script/game/Board.gd" id="1_k5skm"]
 
 [node name="board" type="Node3D"]
-script = ExtResource("1_4hh4s")
+script = ExtResource("1_k5skm")
 nb_column = 7
 nb_line = 6

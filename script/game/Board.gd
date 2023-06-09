@@ -50,7 +50,7 @@ func init_token_materials():
 	var m1:ShaderMaterial = token_material
 	var m2:ShaderMaterial = m1.duplicate()
 	var player_color_index_m1:float =m1.get_shader_parameter(SHADER_PARAM_NAME)
-	#1=>2 , 2=>1
+	#1^3 == 2 , 2^3 == 1
 	var player_color_index_m2:float =(int)(player_color_index_m1)^3
 	m2.set_shader_parameter(SHADER_PARAM_NAME,player_color_index_m2)
 	print("materials value",[m1.get_shader_parameter(SHADER_PARAM_NAME),m2.get_shader_parameter(SHADER_PARAM_NAME)])
@@ -58,7 +58,6 @@ func init_token_materials():
 	
 	
 func rebuild()->void:
-	print("rebuilding ",[nb_column,nb_line])
 	init_board_value()
 	for c in get_children():remove_child(c)#clear all children
 	for i in range(nb_column):
@@ -85,7 +84,6 @@ func spawn_token(col_index:int,player_index:int)->bool:
 	add_child(token)
 	board_value[col_index][h_index]=TOKEN_VALUE.PLAYER1+player_index
 	return true
-	pass
 
 #internal "event"
 func on_export_change():
@@ -98,6 +96,6 @@ func on_export_change():
 func _on_test_spawn_pressed():
 	var col=randi()%nb_column
 	var player=1+randi()%2
-	print("[DBG]test spawn",{"column":col,"player":player})
-	spawn_token(col,player-1)
+	var ret=spawn_token(col,player-1)
+	print("[DBG]test spawn",{"column":col,"player":player,"return":ret})
 pass # Replace with function body.

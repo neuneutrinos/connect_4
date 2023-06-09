@@ -1,16 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://uhf81m8alb7l"]
+[gd_scene load_steps=2 format=3 uid="uid://gbw1rmlf43d8"]
 
-[ext_resource type="PackedScene" uid="uid://blgy5ua8insjy" path="res://scene/part/board.tscn" id="1_w0fbe"]
+[ext_resource type="Script" path="res://script/game/Board.gd" id="1_h0ind"]
 
 [node name="game" type="Node3D"]
 
-[node name="board" parent="." instance=ExtResource("1_w0fbe")]
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.0156197, 0.53329, -0.845788, 0.00984694, 0.845933, 0.533199, 0.99983, 0, -0.0184645, 0, 0, 0)
+transform = Transform3D(-0.0178869, 0.248166, -0.968552, 0.00458228, 0.968718, 0.248124, 0.99983, -2.3287e-08, -0.0184645, -4.84188, 2.08649, -6.7443)
+light_energy = 1.49
+light_bake_mode = 1
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.10231e-08, 0.345282, -0.938499, 1.50927e-08, 0.938499, 0.345282, 1, 0, -4.37114e-08, -11.8765, 4.74071, 3.94005)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.298, 3.034, 3.122)
 
 [node name="DBG" type="Control" parent="."]
 layout_mode = 3
@@ -24,4 +24,9 @@ offset_right = 8.0
 offset_bottom = 8.0
 text = "[DBG] test spawn"
 
-[connection signal="pressed" from="DBG/test_spawn" to="board" method="_on_test_spawn_pressed"]
+[node name="Board" type="Node3D" parent="."]
+script = ExtResource("1_h0ind")
+nb_column = 7
+nb_line = 6
+
+[connection signal="pressed" from="DBG/test_spawn" to="Board" method="_on_test_spawn_pressed"]
