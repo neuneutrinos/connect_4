@@ -24,7 +24,40 @@ offset_right = 8.0
 offset_bottom = 8.0
 text = "[DBG] test spawn"
 
-[node name="Board" type="Node3D" parent="."]
+[node name="vertical_win" type="Button" parent="DBG"]
+layout_mode = 0
+offset_top = 38.0
+offset_right = 97.0
+offset_bottom = 69.0
+text = "vertical win"
+
+[node name="horizontal_win" type="Button" parent="DBG"]
+layout_mode = 0
+offset_top = 76.0
+offset_right = 97.0
+offset_bottom = 107.0
+text = "horizontal win"
+
+[node name="diag_down_win" type="Button" parent="DBG"]
+layout_mode = 0
+offset_top = 116.0
+offset_right = 93.0
+offset_bottom = 147.0
+text = "win diagdown"
+
+[node name="diagup win" type="Button" parent="DBG"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 155.0
+offset_right = 94.0
+offset_bottom = 186.0
+text = "diagup win"
+
+[node name="Board_game" type="Node3D" parent="."]
 script = ExtResource("1_h0ind")
 
-[connection signal="pressed" from="DBG/test_spawn" to="Board" method="_on_test_spawn_pressed"]
+[connection signal="pressed" from="DBG/test_spawn" to="Board_game" method="_on_test_spawn_pressed"]
+[connection signal="pressed" from="DBG/vertical_win" to="Board_game" method="_dbg_spawn_vertical_win"]
+[connection signal="pressed" from="DBG/horizontal_win" to="Board_game" method="_dbg_horizontal_win"]
+[connection signal="pressed" from="DBG/diag_down_win" to="Board_game" method="dbg_diagdown_win"]
+[connection signal="pressed" from="DBG/diagup win" to="Board_game" method="dbg_diagup_win"]

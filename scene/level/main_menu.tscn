@@ -1,18 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://dj0bhibujl1cc"]
+[gd_scene load_steps=6 format=3 uid="uid://dj0bhibujl1cc"]
 
 [ext_resource type="Script" path="res://script/menu/MainMenu.gd" id="1_cwlat"]
 [ext_resource type="Script" path="res://script/game/Board.gd" id="1_n13jp"]
+[ext_resource type="Script" path="res://script/menu/main_menu/control/ControlMainMenu.gd" id="3_43ln5"]
 
 [sub_resource type="Environment" id="Environment_nwewd"]
 adjustment_enabled = true
-adjustment_saturation = 0.5
+adjustment_saturation = 0.8
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_qm87y"]
 dof_blur_far_transition = 611.89
 dof_blur_near_enabled = true
 dof_blur_near_distance = 8192.0
 dof_blur_near_transition = 1063.06
-dof_blur_amount = 0.14
+dof_blur_amount = 0.05
 
 [node name="main_menu" type="Node3D"]
 script = ExtResource("1_cwlat")
@@ -24,36 +25,42 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.749, 2.953, 3)
 
-[node name="Board" type="Node3D" parent="."]
+[node name="Board_background" type="Node3D" parent="."]
 script = ExtResource("1_n13jp")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_nwewd")
 camera_attributes = SubResource("CameraAttributesPractical_qm87y")
 
-[node name="Control" type="Control" parent="."]
+[node name="buttons" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("3_43ln5")
 
-[node name="CenterContainer" type="CenterContainer" parent="Control"]
+[node name="CenterContainer" type="CenterContainer" parent="buttons"]
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="buttons/CenterContainer"]
 layout_mode = 2
 
-[node name="Button_play" type="Button" parent="Control/CenterContainer/VBoxContainer"]
+[node name="Button_play" type="Button" parent="buttons/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "=>Play<="
 
-[node name="Button_setup" type="Button" parent="Control/CenterContainer/VBoxContainer"]
+[node name="Button_setup" type="Button" parent="buttons/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Setup
 "
 
-[node name="Button_quit" type="Button" parent="Control/CenterContainer/VBoxContainer"]
+[node name="Button_quit" type="Button" parent="buttons/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit the game :( "
+
+[connection signal="action_emited" from="buttons" to="." method="_on_button_action_emited"]
+[connection signal="pressed" from="buttons/CenterContainer/VBoxContainer/Button_play" to="buttons" method="_on_button_action" binds= [1]]
+[connection signal="pressed" from="buttons/CenterContainer/VBoxContainer/Button_setup" to="buttons" method="_on_button_action" binds= [2]]
+[connection signal="pressed" from="buttons/CenterContainer/VBoxContainer/Button_quit" to="buttons" method="_on_button_action" binds= [3]]
